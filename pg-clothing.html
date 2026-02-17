@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG Clothing - Fashion That Speaks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #FF69B4;
+            --soft-pink: #FFB6D9;
+            --pale-pink: #FFF0F5;
+            --deep-pink: #FF1493;
+            --white: #FFFFFF;
+            --off-white: #FAFAFA;
+            --text-dark: #2D2D2D;
+            --text-light: #666666;
+            --shadow: rgba(255, 105, 180, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(255, 105, 180, 0.08);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-pink);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-pink);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-pink);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            background: linear-gradient(135deg, var(--white) 0%, var(--pale-pink) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--soft-pink) 0%, transparent 70%);
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, -30px) scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+            animation: fadeInLeft 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero-content .accent {
+            color: var(--primary-pink);
+            font-style: italic;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .shop-now-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--primary-pink);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shop-now-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--deep-pink);
+            transition: width 0.6s ease, height 0.6s ease, top 0.6s ease, left 0.6s ease;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .shop-now-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .shop-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .hero-image {
+            width: 45%;
+            animation: fadeInRight 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            font-weight: 300;
+        }
+
+        /* Products Section */
+        #products {
+            background: var(--off-white);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            background: var(--pale-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 105, 180, 0.1) 100%);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            color: var(--primary-pink);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .product-sizes, .product-colors {
+            margin-bottom: 1rem;
+        }
+
+        .product-sizes span, .product-colors span {
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .size-options, .color-options {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--soft-pink);
+            border-radius: 5px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid var(--white);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--primary-pink);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .buy-btn:hover {
+            background: var(--deep-pink);
+            transform: scale(1.02);
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* Collections Section */
+        #collections {
+            background: var(--pale-pink);
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .collection-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+        }
+
+        .collection-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .collection-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .collection-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Trust Section */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .trust-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .trust-item p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Reviews Section */
+        #reviews {
+            background: var(--off-white);
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .stars {
+            color: var(--primary-pink);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--pale-pink);
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item span {
+            font-size: 1.8rem;
+        }
+
+        .contact-item a {
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--deep-pink);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            animation: slideUp 0.4s ease;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-pink);
+        }
+
+        .modal h2 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .modal-form label {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .modal-form select {
+            padding: 0.8rem;
+            border: 2px solid var(--soft-pink);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Jost', sans-serif;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal-form select:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        .submit-order-btn {
+            padding: 1rem;
+            background: var(--primary-pink);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .submit-order-btn:hover {
+            background: var(--deep-pink);
+            transform: scale(1.02);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 5rem 2rem;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: right 0.4s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .nav-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .nav-overlay.active {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 8rem 5% 3rem;
+                height: auto;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-image {
+                width: 90%;
+                margin-top: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.3rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 1.2rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">PG Clothing</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <div class="nav-overlay"></div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Fashion That <span class="accent">Speaks</span> Your Style</h1>
+            <p>Discover curated collections that blend elegance with contemporary flair. Your wardrobe deserves the extraordinary.</p>
+            <a href="products.html" class="shop-now-btn">SHOP NOW</a>
+        </div>
+        <div class="hero-image">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect fill='%23FFF0F5' width='400' height='500'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='120' fill='%23FF69B4' font-family='serif'%3E👗%3C/text%3E%3C/svg%3E" alt="Fashion">
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section id="products">
+        <h2 class="section-title">Featured Products</h2>
+        <p class="section-subtitle">Handpicked pieces for your perfect look</p>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFB6D9;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FF69B4;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23grad1)' width='400' height='500'/%3E%3Cpath d='M150 150 Q200 100 250 150 L250 350 L150 350 Z' fill='white' opacity='0.3'/%3E%3Ctext x='50%25' y='90%25' text-anchor='middle' font-size='24' fill='white' font-family='serif'%3EElegant Blouse%3C/text%3E%3C/svg%3E" alt="Elegant Blouse"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Elegant Blouse</h3>
+                    <p class="product-price">$49.99</p>
+                    <p class="product-description">Sophisticated silk-blend blouse perfect for any occasion. Breathable and stylish.</p>
+                    <div class="product-sizes">
+                        <span>Available Sizes:</span>
+                        <div class="size-options">
+                            <span class="size-option">XS</span>
+                            <span class="size-option">S</span>
+                            <span class="size-option">M</span>
+                            <span class="size-option">L</span>
+                            <span class="size-option">XL</span>
+                        </div>
+                    </div>
+                    <div class="product-colors">
+                        <span>Colors:</span>
+                        <div class="color-options">
+                            <div class="color-option" style="background: #FFB6D9;" title="Pink"></div>
+                            <div class="color-option" style="background: #FFFFFF; border: 2px solid #ddd;" title="White"></div>
+                            <div class="color-option" style="background: #000000;" title="Black"></div>
+                            <div class="color-option" style="background: #87CEEB;" title="Blue"></div>
+                        </div>
+                    </div>
+                    <button class="buy-btn" onclick="openOrderModal('Elegant Blouse', '$49.99', ['XS', 'S', 'M', 'L', 'XL'], ['Pink', 'White', 'Black', 'Blue'])">BUY NOW</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cdefs%3E%3ClinearGradient id='grad2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234169E1;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23000080;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23grad2)' width='400' height='500'/%3E%3Crect x='120' y='150' width='160' height='250' rx='10' fill='white' opacity='0.3'/%3E%3Ctext x='50%25' y='90%25' text-anchor='middle' font-size='24' fill='white' font-family='serif'%3EClassic Denim%3C/text%3E%3C/svg%3E" alt="Classic Denim"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Classic Denim</h3>
+                    <p class="product-price">$69.99</p>
+                    <p class="product-description">Premium denim jeans with the perfect fit. Timeless style that never goes out of fashion.</p>
+                    <div class="product-sizes">
+                        <span>Available Sizes:</span>
+                        <div class="size-options">
+                            <span class="size-option">26</span>
+                            <span class="size-option">28</span>
+                            <span class="size-option">30</span>
+                            <span class="size-option">32</span>
+                            <span class="size-option">34</span>
+                        </div>
+                    </div>
+                    <div class="product-colors">
+                        <span>Colors:</span>
+                        <div class="color-options">
+                            <div class="color-option" style="background: #4169E1;" title="Blue Denim"></div>
+                            <div class="color-option" style="background: #000000;" title="Black"></div>
+                            <div class="color-option" style="background: #778899;" title="Gray"></div>
+                        </div>
+                    </div>
+                    <button class="buy-btn" onclick="openOrderModal('Classic Denim', '$69.99', ['26', '28', '30', '32', '34'], ['Blue Denim', 'Black', 'Gray'])">BUY NOW</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cdefs%3E%3ClinearGradient id='grad3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFD700;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FF69B4;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23grad3)' width='400' height='500'/%3E%3Cpath d='M150 100 L250 100 L280 350 Q200 420 120 350 Z' fill='white' opacity='0.4'/%3E%3Ctext x='50%25' y='90%25' text-anchor='middle' font-size='24' fill='white' font-family='serif'%3ESummer Dress%3C/text%3E%3C/svg%3E" alt="Summer Dress"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Summer Dress</h3>
+                    <p class="product-price">$89.99</p>
+                    <p class="product-description">Light and flowy summer dress. Perfect for warm weather and special occasions.</p>
+                    <div class="product-sizes">
+                        <span>Available Sizes:</span>
+                        <div class="size-options">
+                            <span class="size-option">XS</span>
+                            <span class="size-option">S</span>
+                            <span class="size-option">M</span>
+                            <span class="size-option">L</span>
+                        </div>
+                    </div>
+                    <div class="product-colors">
+                        <span>Colors:</span>
+                        <div class="color-options">
+                            <div class="color-option" style="background: #FF69B4;" title="Pink"></div>
+                            <div class="color-option" style="background: #FFD700;" title="Yellow"></div>
+                            <div class="color-option" style="background: #98FB98;" title="Mint"></div>
+                            <div class="color-option" style="background: #E6E6FA;" title="Lavender"></div>
+                        </div>
+                    </div>
+                    <button class="buy-btn" onclick="openOrderModal('Summer Dress', '$89.99', ['XS', 'S', 'M', 'L'], ['Pink', 'Yellow', 'Mint', 'Lavender'])">BUY NOW</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Cdefs%3E%3ClinearGradient id='grad4m' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%238B4513;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23000000;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23grad4m)' width='400' height='500'/%3E%3Crect x='100' y='120' width='200' height='280' rx='15' fill='white' opacity='0.3'/%3E%3Ctext x='50%25' y='90%25' text-anchor='middle' font-size='24' fill='white' font-family='serif'%3EChic Jacket%3C/text%3E%3C/svg%3E" alt="Chic Jacket" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Chic Jacket</h3>
+                    <p class="product-price">$129.99</p>
+                    <p class="product-description">Versatile jacket that adds sophistication to any outfit. Premium materials and craftsmanship.</p>
+                    <div class="product-sizes">
+                        <span>Available Sizes:</span>
+                        <div class="size-options">
+                            <span class="size-option">S</span>
+                            <span class="size-option">M</span>
+                            <span class="size-option">L</span>
+                            <span class="size-option">XL</span>
+                        </div>
+                    </div>
+                    <div class="product-colors">
+                        <span>Colors:</span>
+                        <div class="color-options">
+                            <div class="color-option" style="background: #000000;" title="Black"></div>
+                            <div class="color-option" style="background: #8B4513;" title="Brown"></div>
+                            <div class="color-option" style="background: #2F4F4F;" title="Charcoal"></div>
+                        </div>
+                    </div>
+                    <button class="buy-btn" onclick="openOrderModal('Chic Jacket', '$129.99', ['S', 'M', 'L', 'XL'], ['Black', 'Brown', 'Charcoal'])">BUY NOW</button>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="products.html" class="shop-now-btn">VIEW ALL PRODUCTS</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" style="background: linear-gradient(135deg, var(--primary-pink) 0%, var(--deep-pink) 100%); color: var(--white);">
+        <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto; text-align: center;">
+            <div class="stat-item">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 0.5rem;">10,000+</h3>
+                <p style="font-size: 1.1rem; opacity: 0.95;">Happy Customers</p>
+            </div>
+            <div class="stat-item">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 0.5rem;">500+</h3>
+                <p style="font-size: 1.1rem; opacity: 0.95;">Products Available</p>
+            </div>
+            <div class="stat-item">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 0.5rem;">5 Star</h3>
+                <p style="font-size: 1.1rem; opacity: 0.95;">Average Rating</p>
+            </div>
+            <div class="stat-item">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 0.5rem;">24/7</h3>
+                <p style="font-size: 1.1rem; opacity: 0.95;">Customer Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About PG Clothing</h2>
+        <p class="section-subtitle">Where Style Meets Passion</p>
+        <div class="about-content">
+            <p>At PG Clothing, we believe fashion is more than what you wear—it's an expression of who you are. Founded with a vision to bring timeless elegance and contemporary style together, we curate collections that speak to the modern individual.</p>
+            <p>Every piece in our collection is carefully selected for its quality, design, and versatility. We're committed to providing you with clothing that not only looks exceptional but feels incredible to wear.</p>
+            <p>From casual everyday wear to statement pieces for special occasions, PG Clothing is your destination for fashion that truly speaks your style.</p>
+        </div>
+    </section>
+
+    <!-- Our Promise Section -->
+    <section id="promise" style="background: var(--pale-pink);">
+        <h2 class="section-title">Our Promise to You</h2>
+        <p class="section-subtitle">Your satisfaction is our commitment</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto;">
+            <div style="background: var(--white); padding: 2.5rem; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 1rem; color: var(--text-dark);">Authenticity Guaranteed</h3>
+                <p style="color: var(--text-light); line-height: 1.7;">Every product is 100% authentic. We source directly from trusted manufacturers and guarantee the quality of every piece.</p>
+            </div>
+            <div style="background: var(--white); padding: 2.5rem; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🔄</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 1rem; color: var(--text-dark);">Easy Returns</h3>
+                <p style="color: var(--text-light); line-height: 1.7;">Not satisfied? Return within 30 days for a full refund. No questions asked. Your happiness is our priority.</p>
+            </div>
+            <div style="background: var(--white); padding: 2.5rem; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🌱</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 1rem; color: var(--text-dark);">Sustainable Fashion</h3>
+                <p style="color: var(--text-light); line-height: 1.7;">We're committed to eco-friendly practices. Our packaging is recyclable and we partner with ethical manufacturers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section id="collections">
+        <h2 class="section-title">Our Favourite Collections</h2>
+        <p class="section-subtitle">Curated styles for every occasion</p>
+        <div class="collections-grid">
+            <div class="collection-card">
+                <div class="collection-icon">✨</div>
+                <h3>Evening Elegance</h3>
+                <p>Sophisticated pieces that shine at every special occasion. Make unforgettable entrances.</p>
+            </div>
+            <div class="collection-card">
+                <div class="collection-icon">🌸</div>
+                <h3>Spring Essentials</h3>
+                <p>Fresh, vibrant styles that capture the spirit of the season. Bloom in style.</p>
+            </div>
+            <div class="collection-card">
+                <div class="collection-icon">💼</div>
+                <h3>Professional Edit</h3>
+                <p>Command attention in the workplace with our polished, professional collection.</p>
+            </div>
+            <div class="collection-card">
+                <div class="collection-icon">🌊</div>
+                <h3>Casual Comfort</h3>
+                <p>Effortlessly stylish pieces for your everyday adventures. Comfort meets chic.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section id="trust">
+        <h2 class="section-title">Why Choose PG Clothing</h2>
+        <p class="section-subtitle">Your satisfaction is our priority</p>
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="trust-icon">✅</div>
+                <h3>Quality Guaranteed</h3>
+                <p>Premium materials and meticulous craftsmanship in every piece</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">🚚</div>
+                <h3>Fast Delivery</h3>
+                <p>Swift and secure shipping to your doorstep</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">💝</div>
+                <h3>Customer First</h3>
+                <p>Exceptional service and support every step of the way</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">🔒</div>
+                <h3>Secure Shopping</h3>
+                <p>Safe and protected transactions you can trust</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-subtitle">Real reviews from real people</p>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Absolutely love my purchase! The quality is outstanding and the fit is perfect. PG Clothing has become my go-to for all my fashion needs."</p>
+                <p class="reviewer-name">- Sarah M.</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The customer service is exceptional! They helped me find the perfect outfit for my event. Fast shipping and beautiful packaging too!"</p>
+                <p class="reviewer-name">- Jessica L.</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"I've ordered multiple times and have never been disappointed. The clothes are stylish, comfortable, and worth every penny. Highly recommend!"</p>
+                <p class="reviewer-name">- Emily R.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shipping & Delivery Section -->
+    <section id="shipping" style="background: var(--off-white);">
+        <h2 class="section-title">Shipping & Delivery</h2>
+        <p class="section-subtitle">Fast, secure, and reliable delivery to your doorstep</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto;">
+            <div style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span style="font-size: 2.5rem;">📦</span>
+                    <h3 style="font-weight: 600; color: var(--text-dark); font-size: 1.2rem;">Standard Delivery</h3>
+                </div>
+                <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 0.8rem;">3-5 business days</p>
+                <p style="color: var(--primary-pink); font-weight: 600;">FREE on orders over $75</p>
+            </div>
+            <div style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span style="font-size: 2.5rem;">⚡</span>
+                    <h3 style="font-weight: 600; color: var(--text-dark); font-size: 1.2rem;">Express Delivery</h3>
+                </div>
+                <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 0.8rem;">1-2 business days</p>
+                <p style="color: var(--primary-pink); font-weight: 600;">$15.99 flat rate</p>
+            </div>
+            <div style="background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <span style="font-size: 2.5rem;">🌍</span>
+                    <h3 style="font-weight: 600; color: var(--text-dark); font-size: 1.2rem;">International Shipping</h3>
+                </div>
+                <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 0.8rem;">7-14 business days</p>
+                <p style="color: var(--primary-pink); font-weight: 600;">Calculated at checkout</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2.5rem; padding: 2rem; background: var(--pale-pink); border-radius: 15px; max-width: 800px; margin-left: auto; margin-right: auto; margin-top: 3rem;">
+            <p style="color: var(--text-dark); font-size: 1.05rem; line-height: 1.8;"><strong>Order Tracking:</strong> Receive real-time updates via WhatsApp. Track your package from our warehouse to your doorstep.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">We'd love to hear from you</p>
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+            <!-- Contact Info -->
+            <div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 2rem; color: var(--text-dark);">Contact Information</h3>
+                <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 2.5rem;">Have questions about our products or need styling advice? Our dedicated team is here to help you find the perfect pieces for your wardrobe.</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 2rem;">
+                    <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background: var(--soft-pink); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">📱</div>
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);">WhatsApp</h4>
+                            <a href="https://wa.me/9779805673632" style="color: var(--primary-pink); text-decoration: none; font-size: 1.1rem; font-weight: 500;">+977 9805673632</a>
+                            <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Available 24/7 for orders</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background: var(--soft-pink); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">📧</div>
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);">Email</h4>
+                            <a href="mailto:info@pgclothing.com" style="color: var(--primary-pink); text-decoration: none; font-size: 1.1rem; font-weight: 500;">info@pgclothing.com</a>
+                            <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">We'll respond within 24 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background: var(--soft-pink); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">📍</div>
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);">Visit Our Store</h4>
+                            <p style="color: var(--text-dark); font-size: 1.05rem;">123 Fashion Street, Kathmandu</p>
+                            <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Mon - Sat: 10:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background: var(--soft-pink); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">💬</div>
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);">Social Media</h4>
+                            <div style="display: flex; gap: 1rem; margin-top: 0.8rem;">
+                                <a href="#" style="width: 40px; height: 40px; background: var(--primary-pink); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s ease;">📘</a>
+                                <a href="#" style="width: 40px; height: 40px; background: var(--primary-pink); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s ease;">📷</a>
+                                <a href="#" style="width: 40px; height: 40px; background: var(--primary-pink); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s ease;">🐦</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 2rem; color: var(--text-dark);">Send us a Message</h3>
+                <form id="contactForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-dark);">Your Name</label>
+                        <input type="text" required style="width: 100%; padding: 1rem; border: 2px solid var(--soft-pink); border-radius: 10px; font-family: 'Jost', sans-serif; font-size: 1rem; transition: border-color 0.3s ease;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-dark);">Email Address</label>
+                        <input type="email" required style="width: 100%; padding: 1rem; border: 2px solid var(--soft-pink); border-radius: 10px; font-family: 'Jost', sans-serif; font-size: 1rem; transition: border-color 0.3s ease;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-dark);">Phone Number</label>
+                        <input type="tel" required style="width: 100%; padding: 1rem; border: 2px solid var(--soft-pink); border-radius: 10px; font-family: 'Jost', sans-serif; font-size: 1rem; transition: border-color 0.3s ease;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-dark);">Message</label>
+                        <textarea required rows="5" style="width: 100%; padding: 1rem; border: 2px solid var(--soft-pink); border-radius: 10px; font-family: 'Jost', sans-serif; font-size: 1rem; resize: vertical; transition: border-color 0.3s ease;"></textarea>
+                    </div>
+                    <button type="submit" style="padding: 1.2rem; background: var(--primary-pink); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.5px;">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+        
+        <style>
+            #contactForm input:focus, #contactForm textarea:focus {
+                outline: none;
+                border-color: var(--primary-pink);
+            }
+            #contactForm button:hover {
+                background: var(--deep-pink);
+                transform: translateY(-2px);
+                box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+            }
+            @media (max-width: 968px) {
+                #contact > div:first-of-type {
+                    grid-template-columns: 1fr !important;
+                    gap: 3rem !important;
+                }
+            }
+        </style>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;">PG Clothing</div>
+                <p style="opacity: 0.8;">Fashion That Speaks Your Style</p>
+            </div>
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                <a href="#home" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease;">Home</a>
+                <a href="products.html" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease;">Products</a>
+                <a href="#about" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease;">About</a>
+                <a href="#contact" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s ease;">Contact</a>
+            </div>
+            <div>
+                <p style="opacity: 0.8;">&copy; 2026 PG Clothing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            <h2>Complete Your Order</h2>
+            <form class="modal-form" id="orderForm">
+                <div>
+                    <label>Product:</label>
+                    <input type="text" id="modalProductName" readonly style="padding: 0.8rem; border: 2px solid var(--soft-pink); border-radius: 8px; font-size: 1rem; font-family: 'Jost', sans-serif; background: var(--pale-pink);">
+                </div>
+                <div>
+                    <label>Price:</label>
+                    <input type="text" id="modalProductPrice" readonly style="padding: 0.8rem; border: 2px solid var(--soft-pink); border-radius: 8px; font-size: 1rem; font-family: 'Jost', sans-serif; background: var(--pale-pink);">
+                </div>
+                <div>
+                    <label for="sizeSelect">Select Size:</label>
+                    <select id="sizeSelect" required>
+                        <option value="">Choose a size</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="colorSelect">Select Color:</label>
+                    <select id="colorSelect" required>
+                        <option value="">Choose a color</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-order-btn">Send Order via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navOverlay = document.querySelector('.nav-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+        });
+
+        // Close menu when clicking overlay
+        navOverlay.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            navOverlay.classList.remove('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            e.target.reset();
+        });
+
+        // Order Modal Functions
+        let currentProduct = {
+            name: '',
+            price: '',
+            sizes: [],
+            colors: []
+        };
+
+        function openOrderModal(productName, price, sizes, colors) {
+            currentProduct = { name: productName, price: price, sizes: sizes, colors: colors };
+            
+            document.getElementById('modalProductName').value = productName;
+            document.getElementById('modalProductPrice').value = price;
+            
+            // Populate sizes
+            const sizeSelect = document.getElementById('sizeSelect');
+            sizeSelect.innerHTML = '<option value="">Choose a size</option>';
+            sizes.forEach(size => {
+                const option = document.createElement('option');
+                option.value = size;
+                option.textContent = size;
+                sizeSelect.appendChild(option);
+            });
+            
+            // Populate colors
+            const colorSelect = document.getElementById('colorSelect');
+            colorSelect.innerHTML = '<option value="">Choose a color</option>';
+            colors.forEach(color => {
+                const option = document.createElement('option');
+                option.value = color;
+                option.textContent = color;
+                colorSelect.appendChild(option);
+            });
+            
+            document.getElementById('orderModal').classList.add('active');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('active');
+            document.getElementById('orderForm').reset();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('orderModal').addEventListener('click', (e) => {
+            if (e.target.id === 'orderModal') {
+                closeOrderModal();
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('orderForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const size = document.getElementById('sizeSelect').value;
+            const color = document.getElementById('colorSelect').value;
+            
+            if (!size || !color) {
+                alert('Please select both size and color');
+                return;
+            }
+            
+            // Create WhatsApp message
+            const message = `Hello! I would like to order:\n\n` +
+                          `Product: ${currentProduct.name}\n` +
+                          `Price: ${currentProduct.price}\n` +
+                          `Size: ${size}\n` +
+                          `Color: ${color}\n\n` +
+                          `Please confirm the order. Thank you!`;
+            
+            const whatsappURL = `https://wa.me/9779805673632?text=${encodeURIComponent(message)}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+            
+            // Close modal
+            closeOrderModal();
+        });
+
+        // Add scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .collection-card, .review-card, .trust-item').forEach(el => {
+           
